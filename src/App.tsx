@@ -1,13 +1,103 @@
-import React from 'react'
-import { AppLayout } from './app/layouts/AppLayout/AppLayout'
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import LoginPage from './app/pages/LoginPage';
+import SignupPage from './app/pages/SignupPage';
+import DashboardPage from './app/pages/DashboardPage';
+import { AppLayout } from './app/layouts/AppLayout/AppLayout';
+
+// Protected Route Component
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { user, loading } = useAuth();
+
+    if (loading) {
+        return <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh'
+        }}>Loading...</div>;
+    }
+
+    if (!user) {
+        return <Navigate to="/login" replace />;
+    }
+
+    return <>{children}</>;
+};
+
+// Public Route Component (redirect to dashboard if already logged in)
+const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { user, loading } = useAuth();
+
+    if (loading) {
+        return <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh'
+        }}>Loading...</div>;
+    }
+
+    if (user) {
+        return <Navigate to="/dashboard" replace />;
+    }
+
+    return <>{children}</>;
+};
 
 function App() {
     return (
-        <AppLayout>
-            <h1>Farm Management System</h1>
-            <p>Welcome to your farm management application!</p>
-        </AppLayout>
-    )
+        <ConfigProvider
+            theme={{
+                token: {
+                    colorPrimary: '#667eea',
+                    borderRadius: 8,
+                },
+            }}
+        >
+            <BrowserRouter>
+                <AuthProvider>
+                    <Routes>
+                        {/* Public Routes */}
+                        <Route
+                            path="/login"
+                            element={
+                                <PublicRoute>
+                                    <LoginPage />
+                                </PublicRoute>
+                            }
+                        />
+                        <Route
+                            path="/signup"
+                            element={
+                                <PublicRoute>
+                                    <SignupPage />
+                                </PublicRoute>
+                            }
+                        />
+
+                        {/* Protected Routes */}
+                        <Route
+                            path="/dashboard"
+                            element={
+                                <ProtectedRoute>
+                                    <AppLayout>
+                                        <DashboardPage />
+                                    </AppLayout>
+                                </ProtectedRoute>
+                            }
+                        />
+
+                        {/* Default Route */}
+                        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+                        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                    </Routes>
+                </AuthProvider>
+            </BrowserRouter>
+        </ConfigProvider>
+    );
 }
 
-export default App
+export default App;
