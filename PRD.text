@@ -1,0 +1,134 @@
+PRODUCT REQUIREMENTS DOCUMENT (PRD)
+1. Overview
+Product Name: FarmFlow
+Vision: To be the digital notebook for commercial farmers, helping them track daily tasks, expenses, animal health, and inventory with ease and accuracy.
+Target Users: Commercial farmers with 1000+ animals, multiple species (broilers, layers, fish, maggots).
+Key Value Propositions:
+
+Replace paper-based records with a digital system.
+
+Reduce missed tasks and medication schedules.
+
+Track expenses and inventory in real-time.
+
+Improve animal health management.
+
+2. User Stories
+Authentication & Onboarding
+As a new farmer, I want to sign up with my email and farm details so that I can start using the app.
+
+As a returning farmer, I want to log in to access my farm data.
+
+Dashboard
+As a farmer, I want to see an overview of my farm's key metrics (total animals, today's tasks, feed remaining, monthly expenses) so that I can quickly assess the status.
+
+Flock Management
+As a farmer, I want to add a new flock (batch of animals) with details (animal type, start date, initial count) so that I can track them.
+
+As a farmer, I want to view a list of my flocks and their current status (active, sold, harvested) so that I can manage them.
+
+Task Management
+As a farmer, I want to create daily tasks (feeding, cleaning, medication) with scheduled times and frequencies so that I don't forget them.
+
+As a farmer, I want to mark tasks as completed and optionally add notes and proof images so that I have a record.
+
+As a farmer, I want to see today's tasks and receive reminders (in-app and email) for upcoming tasks.
+
+Expense Tracking
+As a farmer, I want to log expenses (feed, medication, labor, equipment) with amount, category, and optional receipt image so that I can track my spending.
+
+As a farmer, I want to view my expenses by date and category so that I can understand my costs.
+
+Health Records
+As a farmer, I want to record health issues (disease, injury, vaccination) for a flock with description, treatment, and cost so that I can monitor animal health.
+
+As a farmer, I want to view the health history of a flock so that I can identify patterns.
+
+Inventory Management
+As a farmer, I want to track inventory items (feed, medication, equipment) with current stock and low stock alerts so that I can reorder in time.
+
+3. Technical Requirements
+Frontend
+React with TypeScript
+
+Tailwind CSS for styling
+
+React Router for routing
+
+React Hook Form for forms
+
+Supabase client for authentication and data
+
+Backend & Database
+Supabase (PostgreSQL) with RLS
+
+Tables: profiles, animal_types, flocks, daily_tasks, expenses, health_records, inventory_items
+
+Authentication via Supabase Auth
+
+Deployment
+Frontend: Vercel
+
+Backend: Supabase
+
+Security
+Row Level Security (RLS) on all tables
+
+Environment variables for secrets
+
+HTTPS for all connections
+
+4. Non-Functional Requirements
+Performance: The app should load within 3 seconds on a slow network.
+
+Usability: The interface should be intuitive for farmers with basic digital literacy.
+
+Reliability: The app should have 99.9% uptime.
+
+Scalability: The database should handle up to 10,000 users and their farm data.
+
+5. Milestones
+Week 1 (MVP)
+Day 1: Project setup, authentication, and basic dashboard.
+
+Day 2-3: Flock management and task management.
+
+Day 4-5: Expense tracking and health records.
+
+Day 6-7: Inventory management, notifications, and deployment.
+
+Week 2 (Enhancements)
+Advanced reporting and analytics.
+
+Multi-user support (farm workers).
+
+Mobile app (React Native).
+
+Week 3 (Polish)
+User feedback and bug fixes.
+
+Performance optimization.
+
+Additional features as per user requests.
+
+6. Success Metrics
+Number of active users (farmers)
+
+Number of animals being tracked
+
+User satisfaction (survey scores)
+
+Reduction in missed tasks and medication
+
+7. Risks & Mitigations
+Risk: Farmers may have poor internet connectivity.
+
+Mitigation: Implement offline mode with local storage and sync when online.
+
+Risk: Farmers may not be tech-savvy.
+
+Mitigation: Provide simple UI, tooltips, and tutorial videos.
+
+Risk: Data security and privacy concerns.
+
+Mitigation: Use RLS, encrypt sensitive data, and comply with data protection regulations.
