@@ -4,6 +4,7 @@ import { MailOutlined, LockOutlined, ArrowRightOutlined, GlobalOutlined, ArrowLe
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../../contexts/AuthContext';
 import heroImage from '../../../../assets/hero-signup.png';
+import { Logo } from '../../../../components/common/Logo';
 
 const { Title, Text, Link } = Typography;
 
@@ -62,7 +63,7 @@ export const SignupForm: React.FC = () => {
                                 onClick={() => navigate('/')}
                                 style={{ padding: '4px 8px' }}
                             />
-                            <Text style={{ fontSize: 16, color: '#6b7280' }}>FarmFlow</Text>
+                            <Logo variant='full' />
                         </div>
                         <GlobalOutlined style={{
                             position: 'absolute',

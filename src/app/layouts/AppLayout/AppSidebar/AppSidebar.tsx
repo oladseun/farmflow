@@ -9,6 +9,7 @@ import {
     InboxOutlined,
 } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Logo } from '../../../../components/common/Logo';
 
 const { Sider } = Layout;
 
@@ -66,6 +67,9 @@ export const AppSidebar: React.FC = () => {
                 borderRight: '1px solid #f0f0f0',
             }}
         >
+            <div className="flex items-center justify-center py-6 border-b border-gray-100">
+                <Logo variant={collapsed ? 'icon' : 'full'} />
+            </div>
             <Menu
                 mode="inline"
                 selectedKeys={[location.pathname]}
