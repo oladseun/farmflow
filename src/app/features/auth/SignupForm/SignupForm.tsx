@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, Card, Typography, message } from 'antd';
-import { UserOutlined, LockOutlined, HomeOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Typography, message, Select } from 'antd';
+import { MailOutlined, LockOutlined, ArrowRightOutlined, GlobalOutlined, ArrowLeftOutlined, PhoneOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../../contexts/AuthContext';
+import heroImage from '../../../../assets/hero-signup.png';
 
 const { Title, Text, Link } = Typography;
 
@@ -30,100 +31,223 @@ export const SignupForm: React.FC = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+            background: 'linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%)',
+            padding: '20px'
         }}>
-            <Card style={{ width: 400, boxShadow: '0 8px 24px rgba(0,0,0,0.12)' }}>
-                <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                    <Title level={2} style={{ marginBottom: 8 }}>🌾 FarmFlow</Title>
-                    <Text type="secondary">Create your farm account</Text>
+            <div style={{
+                width: '100%',
+                maxWidth: '1100px',
+                background: 'white',
+                borderRadius: '32px',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.1)',
+                overflow: 'hidden',
+                display: 'flex',
+                minHeight: '650px',
+                border: '3px solid #e5e7eb'
+            }}>
+                {/* Left Side - Form */}
+                <div style={{
+                    flex: 1,
+                    padding: '60px 50px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center'
+                }}>
+                    {/* Header */}
+                    <div style={{ marginBottom: 40 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                            <Button
+                                type="text"
+                                icon={<ArrowLeftOutlined />}
+                                onClick={() => navigate('/')}
+                                style={{ padding: '4px 8px' }}
+                            />
+                            <Text style={{ fontSize: 16, color: '#6b7280' }}>FarmFlow</Text>
+                        </div>
+                        <GlobalOutlined style={{
+                            position: 'absolute',
+                            top: 30,
+                            right: 30,
+                            fontSize: 24,
+                            color: '#6b7280'
+                        }} />
+                    </div>
+
+                    <Title level={2} style={{ marginBottom: 8, fontSize: 32, fontWeight: 600 }}>
+                        Create new account
+                    </Title>
+
+                    <Form
+                        name="signup"
+                        onFinish={onFinish}
+                        layout="vertical"
+                        size="large"
+                        style={{ marginTop: 30 }}
+                    >
+                        <Form.Item
+                            label={<span style={{ fontSize: 14, color: '#374151' }}>Email address</span>}
+                            name="email"
+                            rules={[
+                                { required: true, message: 'Please input your email!' },
+                                { type: 'email', message: 'Please enter a valid email!' }
+                            ]}
+                        >
+                            <Input
+                                prefix={<MailOutlined style={{ color: '#9ca3af' }} />}
+                                placeholder="your.email@example.com"
+                                style={{
+                                    borderRadius: 12,
+                                    padding: '12px 16px',
+                                    fontSize: 15,
+                                    border: '1.5px solid #e5e7eb'
+                                }}
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            label={<span style={{ fontSize: 14, color: '#374151' }}>Farm Name</span>}
+                            name="farmName"
+                            rules={[{ required: true, message: 'Please input your farm name!' }]}
+                        >
+                            <Input
+                                placeholder="Green Valley Farm"
+                                style={{
+                                    borderRadius: 12,
+                                    padding: '12px 16px',
+                                    fontSize: 15,
+                                    border: '1.5px solid #e5e7eb'
+                                }}
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            label={<span style={{ fontSize: 14, color: '#374151' }}>Password</span>}
+                            name="password"
+                            rules={[
+                                { required: true, message: 'Please input your password!' },
+                                { min: 6, message: 'Password must be at least 6 characters!' }
+                            ]}
+                            extra={<Text type="secondary" style={{ fontSize: 12 }}>Your password must be at least 8 characters long</Text>}
+                        >
+                            <Input.Password
+                                prefix={<LockOutlined style={{ color: '#9ca3af' }} />}
+                                placeholder="••••••••"
+                                style={{
+                                    borderRadius: 12,
+                                    padding: '12px 16px',
+                                    fontSize: 15,
+                                    border: '1.5px solid #e5e7eb'
+                                }}
+                            />
+                        </Form.Item>
+
+                        <Form.Item>
+                            <Button
+                                type="primary"
+                                htmlType="submit"
+                                block
+                                loading={loading}
+                                icon={<ArrowRightOutlined />}
+                                iconPosition="end"
+                                style={{
+                                    height: 52,
+                                    borderRadius: 12,
+                                    fontSize: 16,
+                                    fontWeight: 500,
+                                    background: '#0f172a',
+                                    border: 'none',
+                                    boxShadow: '0 4px 12px rgba(15, 23, 42, 0.3)',
+                                    marginTop: 8
+                                }}
+                            >
+                                Sign Up
+                            </Button>
+                        </Form.Item>
+
+                        <div style={{ textAlign: 'center', marginTop: 24 }}>
+                            <Text style={{ color: '#6b7280', fontSize: 14 }}>
+                                Already have an account?
+                            </Text>
+                            <br />
+                            <Button
+                                type="default"
+                                onClick={() => navigate('/login')}
+                                style={{
+                                    marginTop: 12,
+                                    width: '100%',
+                                    height: 52,
+                                    borderRadius: 12,
+                                    fontSize: 16,
+                                    fontWeight: 500,
+                                    border: '1.5px solid #e5e7eb'
+                                }}
+                            >
+                                Log in
+                            </Button>
+                        </div>
+
+                        <div style={{ textAlign: 'center', marginTop: 20 }}>
+                            <Text style={{ fontSize: 12, color: '#9ca3af' }}>
+                                By continuing, you agree to{' '}
+                                <Link style={{ fontSize: 12 }}>Terms & Conditions</Link>
+                                {' & '}
+                                <Link style={{ fontSize: 12 }}>Privacy Policy</Link>
+                            </Text>
+                        </div>
+                    </Form>
                 </div>
 
-                <Form
-                    name="signup"
-                    onFinish={onFinish}
-                    layout="vertical"
-                    size="large"
-                >
-                    <Form.Item
-                        name="farmName"
-                        rules={[{ required: true, message: 'Please input your farm name!' }]}
-                    >
-                        <Input
-                            prefix={<HomeOutlined />}
-                            placeholder="Farm Name"
-                        />
-                    </Form.Item>
-
-                    <Form.Item
-                        name="email"
-                        rules={[
-                            { required: true, message: 'Please input your email!' },
-                            { type: 'email', message: 'Please enter a valid email!' }
-                        ]}
-                    >
-                        <Input
-                            prefix={<UserOutlined />}
-                            placeholder="Email"
-                            autoComplete="email"
-                        />
-                    </Form.Item>
-
-                    <Form.Item
-                        name="password"
-                        rules={[
-                            { required: true, message: 'Please input your password!' },
-                            { min: 6, message: 'Password must be at least 6 characters!' }
-                        ]}
-                    >
-                        <Input.Password
-                            prefix={<LockOutlined />}
-                            placeholder="Password (min 6 characters)"
-                            autoComplete="new-password"
-                        />
-                    </Form.Item>
-
-                    <Form.Item
-                        name="confirmPassword"
-                        dependencies={['password']}
-                        rules={[
-                            { required: true, message: 'Please confirm your password!' },
-                            ({ getFieldValue }) => ({
-                                validator(_, value) {
-                                    if (!value || getFieldValue('password') === value) {
-                                        return Promise.resolve();
-                                    }
-                                    return Promise.reject(new Error('Passwords do not match!'));
-                                },
-                            }),
-                        ]}
-                    >
-                        <Input.Password
-                            prefix={<LockOutlined />}
-                            placeholder="Confirm Password"
-                            autoComplete="new-password"
-                        />
-                    </Form.Item>
-
-                    <Form.Item>
-                        <Button
-                            type="primary"
-                            htmlType="submit"
-                            block
-                            loading={loading}
-                            style={{ height: 45 }}
-                        >
-                            Create Account
-                        </Button>
-                    </Form.Item>
-
-                    <div style={{ textAlign: 'center' }}>
-                        <Text type="secondary">
-                            Already have an account?{' '}
-                            <Link onClick={() => navigate('/login')}>Sign in</Link>
-                        </Text>
+                {/* Right Side - Hero Image */}
+                <div style={{
+                    flex: 1,
+                    background: `linear-gradient(135deg, rgba(6, 182, 212, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%), url(${heroImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: 60,
+                    color: 'white',
+                    position: 'relative',
+                    borderRadius: '28px',
+                    margin: 12
+                }}>
+                    <div style={{
+                        textAlign: 'center',
+                        zIndex: 1
+                    }}>
+                        <Title level={1} style={{
+                            color: 'white',
+                            fontSize: 48,
+                            fontWeight: 700,
+                            marginBottom: 16,
+                            textShadow: '0 2px 20px rgba(0,0,0,0.2)'
+                        }}>
+                            Boosting
+                        </Title>
+                        <Title level={2} style={{
+                            color: '#a5f3fc',
+                            fontSize: 56,
+                            fontWeight: 800,
+                            margin: 0,
+                            lineHeight: 1.2,
+                            textShadow: '0 2px 20px rgba(0,0,0,0.2)'
+                        }}>
+                            Local Farms
+                        </Title>
+                        <Title level={2} style={{
+                            color: 'white',
+                            fontSize: 48,
+                            fontWeight: 700,
+                            margin: 0,
+                            textShadow: '0 2px 20px rgba(0,0,0,0.2)'
+                        }}>
+                            with Love
+                        </Title>
                     </div>
-                </Form>
-            </Card>
+                </div>
+            </div>
         </div>
     );
 };
