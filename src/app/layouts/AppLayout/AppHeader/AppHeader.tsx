@@ -1,12 +1,12 @@
 import React from 'react';
-import { Layout, Menu, Avatar, Dropdown, Typography, Space } from 'antd';
+import { Layout, Avatar, Dropdown, Typography, Space } from 'antd';
 import {
     LogoutOutlined,
     UserOutlined,
     SettingOutlined,
     BellOutlined
 } from '@ant-design/icons';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const { Header } = Layout;
