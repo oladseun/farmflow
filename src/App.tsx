@@ -6,6 +6,7 @@ import LoginPage from './app/pages/LoginPage';
 import SignupPage from './app/pages/SignupPage';
 import DashboardPage from './app/pages/DashboardPage';
 import { AppLayout } from './app/layouts/AppLayout/AppLayout';
+import { antdTheme } from './lib/theme';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -16,7 +17,10 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '100vh'
+            height: '100vh',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: 16,
+            color: '#13171F'
         }}>Loading...</div>;
     }
 
@@ -36,7 +40,10 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '100vh'
+            height: '100vh',
+            fontFamily: 'Inter, sans-serif',
+            fontSize: 16,
+            color: '#13171F'
         }}>Loading...</div>;
     }
 
@@ -49,14 +56,7 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 function App() {
     return (
-        <ConfigProvider
-            theme={{
-                token: {
-                    colorPrimary: '#667eea',
-                    borderRadius: 8,
-                },
-            }}
-        >
+        <ConfigProvider theme={antdTheme}>
             <BrowserRouter>
                 <AuthProvider>
                     <Routes>

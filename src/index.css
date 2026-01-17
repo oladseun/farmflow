@@ -1,3 +1,6 @@
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
 :root {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -5,9 +8,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
+  color: #13171F;
+  background-color: #EFEFF5;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,6 +28,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #13171F;
 }
 
 #root {
@@ -32,37 +37,119 @@ body {
   margin: 0 auto;
 }
 
-/* Ant Design Overrides for Modern Look */
+/* Typography Classes */
+.text-regular {
+  font-weight: 400;
+}
+
+.text-medium {
+  font-weight: 500;
+}
+
+.text-semibold {
+  font-weight: 600;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.text-black {
+  font-weight: 900;
+}
+
+/* Ant Design Overrides with FarmFlow Design System */
 .ant-input,
-.ant-input-password {
+.ant-input-password,
+.ant-select-selector {
   border-radius: 12px !important;
   transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  border-color: #EFEFF5 !important;
 }
 
 .ant-input:hover,
-.ant-input-password:hover {
-  border-color: #3b82f6 !important;
+.ant-input-password:hover,
+.ant-select-selector:hover {
+  border-color: #13171F !important;
 }
 
 .ant-input:focus,
 .ant-input-password:focus,
 .ant-input-focused,
-.ant-input-password-focused {
-  border-color: #3b82f6 !important;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1) !important;
+.ant-input-password-focused,
+.ant-select-focused .ant-select-selector {
+  border-color: #13171F !important;
+  box-shadow: 0 0 0 2px rgba(19, 23, 31, 0.1) !important;
 }
 
-.ant-btn-primary {
+.ant-btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  border-radius: 12px !important;
   transition: all 0.3s ease;
 }
 
+.ant-btn-primary {
+  background-color: #13171F !important;
+  border-color: #13171F !important;
+}
+
 .ant-btn-primary:hover {
+  background-color: #2a2f3a !important;
+  border-color: #2a2f3a !important;
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.4) !important;
+  box-shadow: 0 8px 16px rgba(19, 23, 31, 0.2) !important;
+}
+
+.ant-card {
+  border-radius: 16px !important;
+  border: none !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
 }
 
 .ant-form-item-label>label {
   font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  color: #13171F;
+}
+
+.ant-layout {
+  background: #EFEFF5 !important;
+}
+
+.ant-layout-header {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #EFEFF5 !important;
+}
+
+.ant-layout-sider {
+  background: #FFFFFF !important;
+}
+
+.ant-menu {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.ant-menu-item-selected {
+  background-color: #E4FFC4 !important;
+  color: #13171F !important;
+}
+
+.ant-menu-item:hover {
+  background-color: #EFEFF5 !important;
+}
+
+.ant-statistic-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: #6B7280;
+}
+
+.ant-statistic-content {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
 }
 
 /* Responsive Design */
@@ -73,12 +160,5 @@ body {
 
   .hero-section {
     display: none !important;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
   }
 }
